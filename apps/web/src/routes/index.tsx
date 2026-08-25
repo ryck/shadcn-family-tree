@@ -53,7 +53,11 @@ function Home() {
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <CopyableCommand command={installCommand} />
-            <Button variant="outline" render={<Link to="/demo" />}>
+            <Button
+              variant="outline"
+              nativeButton={false}
+              render={<Link to="/demo" />}
+            >
               Open the demo
               <ArrowRightIcon data-icon="inline-end" />
             </Button>

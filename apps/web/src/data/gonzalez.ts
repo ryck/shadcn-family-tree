@@ -185,7 +185,7 @@ export const gonzalezLago: Person[] = [
     partnerIds: ["fernando-iglesias"],
   },
   {
-    id: "fernando-iglesias",
+    id: "fernando-iglesias-pazo",
     // Hermano de Mary, luego mismos dos apellidos.
     name: "Fernando Iglesias del Pazo",
     sex: "male",
