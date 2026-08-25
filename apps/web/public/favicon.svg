@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <title>family-tree</title>
+  <style>
+    .m { stroke: #b8761a; fill: none }
+    .n { fill: #b8761a }
+    @media (prefers-color-scheme: dark) {
+      .m { stroke: #f2a93b }
+      .n { fill: #f2a93b }
+    }
+  </style>
+  <g class="m" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 7v3"/>
+    <path d="M5 14.5v-2.5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2.5"/>
+  </g>
+  <g class="n">
+    <circle cx="12" cy="4.25" r="2.6"/>
+    <circle cx="5" cy="17.25" r="2.6"/>
+    <circle cx="19" cy="17.25" r="2.6"/>
+  </g>
+</svg>

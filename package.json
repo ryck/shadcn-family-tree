@@ -2,6 +2,14 @@
   "name": "shadcn-familytree",
   "version": "0.0.1",
   "private": true,
+  "homepage": "https://shadcn-familytree.ryck.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryck/shadcn-familytree.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ryck/shadcn-familytree/issues"
+  },
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",

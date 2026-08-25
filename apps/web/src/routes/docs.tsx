@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router"
 
+import { Eyebrow } from "@/components/eyebrow"
 import { SiteHeader } from "@/components/site-header"
+import { installCommand, site } from "@/lib/site"
 
 export const Route = createFileRoute("/docs")({ component: Docs })
 
@@ -24,7 +26,7 @@ function Docs() {
             <a
               key={section.id}
               href={`#${section.id}`}
-              className="py-1 text-sm text-muted-foreground hover:text-foreground"
+              className="py-1 text-sm text-muted-foreground hover:text-primary"
             >
               {section.title}
             </a>
@@ -32,7 +34,8 @@ function Docs() {
         </nav>
 
         <main className="min-w-0 flex-1">
-          <h1 className="font-heading text-3xl font-medium tracking-tight">
+          <Eyebrow>{site.namespace}/family-tree</Eyebrow>
+          <h1 className="mt-3 font-heading text-3xl font-medium tracking-tight text-primary">
             Documentation
           </h1>
           <p className="mt-2 text-muted-foreground">
@@ -47,7 +50,17 @@ function Docs() {
               button, separator, toggle-group and tooltip — and has no runtime
               dependencies of its own.
             </P>
-            <Code>{`npx shadcn@latest add @familytree/family-tree`}</Code>
+            <Code>{installCommand}</Code>
+            <P>
+              To install by name instead, register the namespace once in your{" "}
+              <Cd>components.json</Cd>:
+            </P>
+            <Code>{`{
+  "registries": {
+    "${site.namespace}": "${site.url}/r/{name}.json"
+  }
+}`}</Code>
+            <Code>{`npx shadcn@latest add ${site.namespace}/family-tree`}</Code>
             <P>Then render it inside something with a height.</P>
             <Code>{`import { FamilyTree } from "@/components/ui/family-tree"
 
@@ -240,7 +253,7 @@ function Section({
 }) {
   return (
     <section id={id} className="scroll-mt-20 pt-10">
-      <h2 className="font-heading text-xl font-medium tracking-tight">
+      <h2 className="font-heading text-xl font-medium tracking-tight text-primary">
         {title}
       </h2>
       <div className="mt-3 flex flex-col gap-4">{children}</div>

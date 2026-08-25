@@ -1,9 +1,26 @@
-# family-tree
+# shadcn-family-tree
 
 A vertical, generation-layered family tree component for shadcn/ui. People are
 shadcn `Card`s laid out by generation, joined by relationship connectors. Click
 anyone and the whole tree re-labels itself around them — _father_, _step-mother_,
 _half-brother_, _first cousin once removed_ — all calculated from the graph.
+
+**[shadcn-familytree.ryck.dev](https://shadcn-familytree.ryck.dev)** — docs, a
+live [demo](https://shadcn-familytree.ryck.dev/demo), and the registry.
+
+```bash
+npx shadcn@latest add https://shadcn-familytree.ryck.dev/r/family-tree.json
+```
+
+Or register the namespace once in your `components.json` and install by name:
+
+```json
+{
+  "registries": {
+    "@familytree": "https://shadcn-familytree.ryck.dev/r/{name}.json"
+  }
+}
+```
 
 ```bash
 npx shadcn@latest add @familytree/family-tree
@@ -85,7 +102,8 @@ pnpm registry:build   # regenerate apps/web/public/r
 ```
 
 Rerun `pnpm registry:build` after changing anything under
-`packages/family-tree/src` — the built JSON is what consumers install.
+`packages/family-tree/src` — the built JSON is what consumers install, and it is
+served from `/r/family-tree.json` on the deployed site.
 
 Linting is [oxlint](https://oxc.rs) and formatting is
 [oxfmt](https://oxc.rs), both configured at the repo root

@@ -3,15 +3,15 @@ import { createFileRoute, Link } from "@tanstack/react-router"
 import { FamilyTree } from "@workspace/family-tree"
 import { ArrowRightIcon, CheckIcon, CopyIcon } from "lucide-react"
 
-import { Badge } from "@workspace/ui/components/badge"
 import { Button } from "@workspace/ui/components/button"
 
+import { Eyebrow } from "@/components/eyebrow"
+import { GithubIcon } from "@/components/github-icon"
 import { SiteHeader } from "@/components/site-header"
 import { hollis } from "@/data/hollis"
+import { installCommand, site } from "@/lib/site"
 
 export const Route = createFileRoute("/")({ component: Home })
-
-const INSTALL = "npx shadcn@latest add @familytree/family-tree"
 
 const FEATURES = [
   {
@@ -39,12 +39,11 @@ function Home() {
 
       <main className="flex-1">
         <section className="mx-auto w-full max-w-6xl px-4 pt-16 pb-10">
-          <Badge variant="secondary" className="mb-4">
-            shadcn registry component
-          </Badge>
+          <Eyebrow>shadcn registry component</Eyebrow>
 
-          <h1 className="max-w-2xl font-heading text-4xl font-medium tracking-tight text-balance sm:text-5xl">
-            Family trees that know who everyone is to you.
+          <h1 className="mt-4 max-w-2xl font-heading text-4xl font-medium tracking-tight text-balance sm:text-5xl">
+            Family trees that know{" "}
+            <span className="text-primary">who everyone is to you.</span>
           </h1>
 
           <p className="mt-4 max-w-xl text-lg text-pretty text-muted-foreground">
@@ -53,7 +52,7 @@ function Home() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <CopyableCommand command={INSTALL} />
+            <CopyableCommand command={installCommand} />
             <Button variant="outline" render={<Link to="/demo" />}>
               Open the demo
               <ArrowRightIcon data-icon="inline-end" />
@@ -76,7 +75,9 @@ function Home() {
         <section className="mx-auto grid w-full max-w-6xl gap-8 px-4 pb-24 sm:grid-cols-2">
           {FEATURES.map((feature) => (
             <div key={feature.title} className="flex flex-col gap-1.5">
-              <h2 className="font-heading font-medium">{feature.title}</h2>
+              <h2 className="font-heading font-medium text-primary">
+                {feature.title}
+              </h2>
               <p className="text-sm text-pretty text-muted-foreground">
                 {feature.body}
               </p>
@@ -86,14 +87,25 @@ function Home() {
       </main>
 
       <footer className="border-t">
-        <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-6 text-sm text-muted-foreground">
+        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-6 text-sm text-muted-foreground">
           <span>Built with shadcn/ui, Base UI and TanStack Start.</span>
-          <Link
-            to="/docs"
-            className="underline-offset-4 hover:text-foreground hover:underline"
-          >
-            Documentation
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              to="/docs"
+              className="underline-offset-4 hover:text-foreground hover:underline"
+            >
+              Documentation
+            </Link>
+            <a
+              href={site.github}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 underline-offset-4 hover:text-foreground hover:underline"
+            >
+              <GithubIcon className="size-3.5" />
+              GitHub
+            </a>
+          </div>
         </div>
       </footer>
     </div>

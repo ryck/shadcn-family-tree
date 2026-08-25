@@ -40,7 +40,9 @@ function Demo() {
 
       <main className="mx-auto flex min-h-0 w-full max-w-6xl flex-1 flex-col gap-3 px-4 py-6">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="mr-1 text-sm text-muted-foreground">Dataset</span>
+          <span className="mr-2 font-mono text-xs tracking-[0.2em] text-primary uppercase">
+            Dataset
+          </span>
           {(Object.keys(datasets) as DatasetKey[]).map((option) => (
             <Button
               key={option}
