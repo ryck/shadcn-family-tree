@@ -1,0 +1,147 @@
+/**
+ * Family tree tokens.
+ *
+ * Branch hues are OKLCH with a shared lightness and chroma, so the eight lines
+ * read as one family of colours rather than eight unrelated ones, and stay
+ * legible against both themes. Only lightness and chroma move between light and
+ * dark — the hues themselves stay put, so a branch keeps its identity when the
+ * theme flips.
+ */
+
+[data-slot="family-tree"] {
+  --ft-card-width: 200px;
+  --ft-card-height: 78px;
+  --ft-partner-gap: 28px;
+  --ft-sibling-gap: 32px;
+  --ft-component-gap: 96px;
+  --ft-row-gap: 72px;
+
+  --ft-connector-width: 1.5px;
+  --ft-connector-radius: 10px;
+  --ft-dim-opacity: 0.28;
+
+  --ft-branch-1: oklch(0.55 0.16 255);
+  --ft-branch-2: oklch(0.58 0.15 155);
+  --ft-branch-3: oklch(0.6 0.16 45);
+  --ft-branch-4: oklch(0.55 0.16 330);
+  --ft-branch-5: oklch(0.56 0.14 200);
+  --ft-branch-6: oklch(0.58 0.15 95);
+  --ft-branch-7: oklch(0.54 0.16 295);
+  --ft-branch-8: oklch(0.57 0.15 20);
+  --ft-branch-none: var(--muted-foreground);
+}
+
+.dark [data-slot="family-tree"] {
+  --ft-branch-1: oklch(0.72 0.13 255);
+  --ft-branch-2: oklch(0.75 0.12 155);
+  --ft-branch-3: oklch(0.76 0.13 45);
+  --ft-branch-4: oklch(0.72 0.13 330);
+  --ft-branch-5: oklch(0.74 0.11 200);
+  --ft-branch-6: oklch(0.78 0.12 95);
+  --ft-branch-7: oklch(0.71 0.13 295);
+  --ft-branch-8: oklch(0.73 0.13 20);
+}
+
+/* Resolved per card and per connector from the branch slot. */
+[data-branch="0"] {
+  --ft-branch: var(--ft-branch-1);
+}
+[data-branch="1"] {
+  --ft-branch: var(--ft-branch-2);
+}
+[data-branch="2"] {
+  --ft-branch: var(--ft-branch-3);
+}
+[data-branch="3"] {
+  --ft-branch: var(--ft-branch-4);
+}
+[data-branch="4"] {
+  --ft-branch: var(--ft-branch-5);
+}
+[data-branch="5"] {
+  --ft-branch: var(--ft-branch-6);
+}
+[data-branch="6"] {
+  --ft-branch: var(--ft-branch-7);
+}
+[data-branch="7"] {
+  --ft-branch: var(--ft-branch-8);
+}
+[data-branch="none"] {
+  --ft-branch: var(--ft-branch-none);
+}
+
+/* The pannable surface. Cards and connectors share one transform so they
+   never drift apart at fractional zoom levels. */
+[data-slot="family-tree-viewport"] {
+  touch-action: none;
+  overscroll-behavior: contain;
+}
+
+[data-slot="family-tree-surface"] {
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+[data-slot="family-tree-node"] {
+  position: absolute;
+  /* Contains the stretched select button and keeps the location link, which
+     raises itself above it, from escaping into the page's stacking order. */
+  isolation: isolate;
+  width: var(--ft-card-width);
+  height: var(--ft-card-height);
+  transition:
+    translate 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 200ms ease;
+}
+
+/* Off-lineage cards recede rather than disappear, so the shape of the whole
+   family stays readable while one line is highlighted. */
+[data-slot="family-tree-node"][data-dimmed="true"] {
+  opacity: var(--ft-dim-opacity);
+}
+
+[data-slot="family-tree-connectors"] {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+[data-slot="family-tree-edge"] {
+  fill: none;
+  stroke: var(--ft-branch, var(--ft-branch-none));
+  stroke-width: var(--ft-connector-width);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: opacity 200ms ease;
+}
+
+[data-slot="family-tree-edge"][data-dimmed="true"] {
+  opacity: var(--ft-dim-opacity);
+}
+
+/* An unmarried partnership reads as a dashed link; a dissolved one is
+   dashed and struck through by the hatch marker. */
+[data-slot="family-tree-edge"][data-status="partnership"],
+[data-slot="family-tree-edge"][data-status="engaged"],
+[data-slot="family-tree-edge"][data-status="separated"],
+[data-slot="family-tree-edge"][data-status="divorced"] {
+  stroke-dasharray: 5 4;
+}
+
+[data-slot="family-tree-generation-rule"] {
+  position: absolute;
+  left: 0;
+  height: 0;
+  border-top: 1px dashed var(--border);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="family-tree-node"],
+  [data-slot="family-tree-surface"],
+  [data-slot="family-tree-edge"] {
+    transition-duration: 0.01ms !important;
+  }
+}

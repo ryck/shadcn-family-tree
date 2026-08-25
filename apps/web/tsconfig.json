@@ -14,7 +14,8 @@
     "types": ["vite/client"],
     "paths": {
       "@/*": ["./src/*"],
-      "@workspace/ui/*": ["../../packages/ui/src/*"]
+      "@workspace/ui/*": ["../../packages/ui/src/*"],
+      "@workspace/family-tree": ["../../packages/family-tree/src/index.ts"]
     },
 
     /* Bundler mode */

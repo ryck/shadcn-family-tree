@@ -1,0 +1,46 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "unicorn", "oxc", "import", "react", "jsx-a11y"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error",
+    "perf": "warn"
+  },
+  "env": { "browser": true, "es2024": true },
+  "rules": {
+    // The automatic JSX runtime is in use (`"jsx": "react-jsx"`), so React does
+    // not need to be in scope.
+    "react/react-in-jsx-scope": "off",
+
+    // `toSorted` needs lib ES2023. The component ships as source into consumer
+    // projects whose tsconfig we do not control, so every sort here is either
+    // on a copy we just made or on an array we own outright.
+    "unicorn/no-array-sort": "off",
+
+    // `import "./family-tree.css"` is the point — the component carries its own
+    // tokens rather than asking consumers to wire them into globals.css.
+    "import/no-unassigned-import": "off",
+
+    // Duplicates the native `react/exhaustive-effect-dependencies`, which stays
+    // on. Unlike that rule, this one ignores inline disable comments, so the
+    // two deliberate exceptions in family-tree.tsx could not be annotated.
+    "react-hooks/exhaustive-deps": "off"
+  },
+  "overrides": [
+    {
+      // Written by the shadcn CLI and reinstated verbatim on every
+      // `shadcn add`, so any fix here is undone at the next update.
+      "files": ["packages/ui/src/components/**", "packages/ui/src/lib/**"],
+      "rules": {
+        "react/jsx-no-constructed-context-values": "off"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "dist/",
+    ".turbo/",
+    ".output/",
+    "**/routeTree.gen.ts",
+    "apps/web/public/r/"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "familytree",
+  "homepage": "https://shadcn-familytree.vercel.app",
+  "items": [
+    {
+      "name": "family-tree",
+      "type": "registry:ui",
+      "title": "Family Tree",
+      "description": "A compact, vertical, generation-layered family tree with relationship connectors, calculated kinship badges, focus-relative branch colours, and pan/zoom.",
+      "dependencies": [],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "separator",
+        "toggle-group",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "packages/family-tree/src/family-tree.tsx",
+          "target": "components/ui/family-tree/family-tree.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/family-tree.css",
+          "target": "components/ui/family-tree/family-tree.css",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/person-card.tsx",
+          "target": "components/ui/family-tree/person-card.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/connectors.tsx",
+          "target": "components/ui/family-tree/connectors.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/types.ts",
+          "target": "components/ui/family-tree/types.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/graph.ts",
+          "target": "components/ui/family-tree/graph.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/generations.ts",
+          "target": "components/ui/family-tree/generations.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/layout.ts",
+          "target": "components/ui/family-tree/layout.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/kinship.ts",
+          "target": "components/ui/family-tree/kinship.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/branches.ts",
+          "target": "components/ui/family-tree/branches.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/lineage.ts",
+          "target": "components/ui/family-tree/lineage.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/use-family-tree.ts",
+          "target": "components/ui/family-tree/use-family-tree.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/use-viewport.ts",
+          "target": "components/ui/family-tree/use-viewport.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "packages/family-tree/src/index.ts",
+          "target": "components/ui/family-tree/index.ts",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}
