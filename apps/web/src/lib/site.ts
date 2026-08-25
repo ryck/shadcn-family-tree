@@ -5,7 +5,7 @@ export const site = {
   nameLead: "shadcn-family-",
   nameAccent: "tree",
   url: "https://shadcn-family-tree.ryck.dev",
-  github: "https://github.com/ryck/shadcn-familytree",
+  github: "https://github.com/ryck/shadcn-family-tree",
   /** Namespace a consumer registers to install by name. */
   namespace: "@familytree",
 } as const
