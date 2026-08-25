@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "familytree",
-  "homepage": "https://shadcn-familytree.ryck.dev",
+  "homepage": "https://shadcn-family-tree.ryck.dev",
   "items": [
     {
       "name": "family-tree",

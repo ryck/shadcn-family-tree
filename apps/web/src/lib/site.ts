@@ -4,7 +4,7 @@ export const site = {
   /** Split for the wordmark: the tail takes the brand colour. */
   nameLead: "shadcn-family-",
   nameAccent: "tree",
-  url: "https://shadcn-familytree.ryck.dev",
+  url: "https://shadcn-family-tree.ryck.dev",
   github: "https://github.com/ryck/shadcn-familytree",
   /** Namespace a consumer registers to install by name. */
   namespace: "@familytree",

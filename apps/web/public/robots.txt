@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shadcn-familytree.ryck.dev/sitemap.xml
+Sitemap: https://shadcn-family-tree.ryck.dev/sitemap.xml
