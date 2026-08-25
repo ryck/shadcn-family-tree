@@ -44,6 +44,11 @@
           "type": "registry:ui"
         },
         {
+          "path": "packages/family-tree/src/dates.ts",
+          "target": "components/ui/family-tree/dates.ts",
+          "type": "registry:ui"
+        },
+        {
           "path": "packages/family-tree/src/graph.ts",
           "target": "components/ui/family-tree/graph.ts",
           "type": "registry:ui"

@@ -105,14 +105,20 @@ function buildClusters(
   const clusterOf = new Map<string, Cluster>()
   const claimed = new Set<string>()
 
+  const descends = (id: string) => (graph.parentsOf.get(id) ?? []).length > 0
+
   // Anchor on people who descend from somewhere in the tree, oldest first, so
   // that a person who married in attaches to their spouse rather than the
-  // other way round.
-  const ordered = [...graph.people].sort(
-    (a, b) => (generation.get(a.id) ?? 0) - (generation.get(b.id) ?? 0)
-  )
-
-  const descends = (id: string) => (graph.parentsOf.get(id) ?? []).length > 0
+  // other way round. The second key is what enforces that: without it the
+  // winner is whoever appears first in the input, and a spouse processed early
+  // starts a cluster of their own — leaving the couple stranded at opposite
+  // ends of their generation, joined by a connector spanning the whole tree.
+  const ordered = [...graph.people].sort((a, b) => {
+    const byGeneration =
+      (generation.get(a.id) ?? 0) - (generation.get(b.id) ?? 0)
+    if (byGeneration !== 0) return byGeneration
+    return Number(descends(b.id)) - Number(descends(a.id))
+  })
 
   for (const person of ordered) {
     if (claimed.has(person.id)) continue

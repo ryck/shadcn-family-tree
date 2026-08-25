@@ -170,8 +170,8 @@ describe("step and in-law", () => {
     expect(label("gwen", "mira")).toBe("daughter-in-law")
   })
 
-  it("returns self for the same person", () => {
-    expect(label("liam", "liam")).toBe("you")
+  it("names the focused person themselves", () => {
+    expect(label("liam", "liam")).toBe("active")
   })
 
   it("returns an empty label for unrelated people", () => {

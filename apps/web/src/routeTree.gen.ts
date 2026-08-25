@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as GonzalezRouteImport } from './routes/gonzalez'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as DemoRouteImport } from './routes/demo'
 import { Route as IndexRouteImport } from './routes/index'
 
+const GonzalezRoute = GonzalezRouteImport.update({
+  id: '/gonzalez',
+  path: '/gonzalez',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DocsRoute = DocsRouteImport.update({
   id: '/docs',
   path: '/docs',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/demo': typeof DemoRoute
   '/docs': typeof DocsRoute
+  '/gonzalez': typeof GonzalezRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/demo': typeof DemoRoute
   '/docs': typeof DocsRoute
+  '/gonzalez': typeof GonzalezRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/demo': typeof DemoRoute
   '/docs': typeof DocsRoute
+  '/gonzalez': typeof GonzalezRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/demo' | '/docs'
+  fullPaths: '/' | '/demo' | '/docs' | '/gonzalez'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/demo' | '/docs'
-  id: '__root__' | '/' | '/demo' | '/docs'
+  to: '/' | '/demo' | '/docs' | '/gonzalez'
+  id: '__root__' | '/' | '/demo' | '/docs' | '/gonzalez'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DemoRoute: typeof DemoRoute
   DocsRoute: typeof DocsRoute
+  GonzalezRoute: typeof GonzalezRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/gonzalez': {
+      id: '/gonzalez'
+      path: '/gonzalez'
+      fullPath: '/gonzalez'
+      preLoaderRoute: typeof GonzalezRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/docs': {
       id: '/docs'
       path: '/docs'
@@ -89,6 +106,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DemoRoute: DemoRoute,
   DocsRoute: DocsRoute,
+  GonzalezRoute: GonzalezRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

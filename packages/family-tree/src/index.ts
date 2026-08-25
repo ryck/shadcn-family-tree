@@ -1,12 +1,21 @@
 export { FamilyTree, type FamilyTreeProps } from "./family-tree"
 export {
   PersonCard,
-  lifespan,
   type PersonCardContext,
   type PersonCardProps,
 } from "./person-card"
 export { Connectors, type ConnectorsProps } from "./connectors"
 
+export {
+  ageHint,
+  ageOf,
+  displayAge,
+  isPreciseDate,
+  lifespan,
+  lifespanWithAge,
+  yearOf,
+  type AgeOptions,
+} from "./dates"
 export { buildGraph, dateKey } from "./graph"
 export { assignGenerations, findComponents } from "./generations"
 export { DEFAULT_LAYOUT_OPTIONS, layoutTree } from "./layout"

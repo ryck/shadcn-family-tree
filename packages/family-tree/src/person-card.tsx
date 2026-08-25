@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
+import { ageHint, lifespanWithAge } from "./dates"
 import type { Person, Relationship, Sex } from "./types"
 
 export interface PersonCardContext {
@@ -21,6 +22,8 @@ export interface PersonCardContext {
   relationship: Relationship | null
   isFocused: boolean
   isDimmed: boolean
+  /** False where a living person's age would be a guess; see `AgeOptions`. */
+  inferLivingAge: boolean
 }
 
 export interface PersonCardProps extends Omit<PersonCardContext, "isDimmed"> {
@@ -47,21 +50,8 @@ export function personLabel(
   person: Person,
   relationship: Relationship | null
 ): string {
-  const term =
-    relationship && relationship.type !== "self" && relationship.label
-      ? relationship.label
-      : null
+  const term = relationship?.label ? relationship.label : null
   return term ? `${person.name}, ${term}` : person.name
-}
-
-/** "1948 – 2001", "b. 1975", "d. 1990", or nothing at all. */
-export function lifespan(person: Person): string | null {
-  const born = person.birth?.date
-  const died = person.death?.date
-  if (born && died) return `${born} – ${died}`
-  if (born) return `b. ${born}`
-  if (died) return `d. ${died}`
-  return person.death ? "deceased" : null
 }
 
 /** Where a place name points. A search, not a pin — the data is free text. */
@@ -75,17 +65,16 @@ export function PersonCard({
   branch,
   relationship,
   isFocused,
+  inferLivingAge,
   compact = false,
 }: PersonCardProps) {
-  const dates = lifespan(person)
+  const dates = lifespanWithAge(person, { inferLiving: inferLivingAge })
   const deceased = Boolean(person.death)
   const SexIcon = SEX_ICON[person.sex]
 
-  // "you" on the focused card is noise — the ring already says that.
-  const badge =
-    relationship && relationship.type !== "self" && relationship.label
-      ? relationship.label
-      : null
+  // The focused card gets a badge too — an empty slot where every other card
+  // has a term reads as missing data rather than as "this one is you".
+  const badge = relationship?.label ? relationship.label : null
 
   const place = person.location ?? person.birth?.place
 
@@ -139,7 +128,10 @@ export function PersonCard({
 
       {/* Nickname and lifespan. */}
       {meta ? (
-        <div className="mt-0.5 truncate text-[10px] text-muted-foreground tabular-nums">
+        <div
+          className="mt-0.5 truncate text-[10px] text-muted-foreground tabular-nums"
+          title={ageHint(person, { inferLiving: inferLivingAge })}
+        >
           {meta}
         </div>
       ) : null}
@@ -148,7 +140,7 @@ export function PersonCard({
       <div className="mt-auto flex h-4 items-center justify-between gap-2">
         {badge ? (
           <Badge
-            variant="secondary"
+            variant={isFocused ? "default" : "secondary"}
             className="h-4 shrink truncate px-1.5 text-[10px] font-normal"
           >
             {badge}

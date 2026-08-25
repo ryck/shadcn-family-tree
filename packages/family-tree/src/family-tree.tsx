@@ -33,6 +33,13 @@ export interface FamilyTreeProps extends React.ComponentProps<"div"> {
   onFocusModeChange?: (mode: FocusMode) => void
   /** Override the rendered card entirely. */
   renderCard?: (context: PersonCardContext) => React.ReactNode
+  /**
+   * Whether a living person's age may be inferred from today's date. Return
+   * false for generations whose records are too old to assume the person is
+   * still alive — those then show an age only if a death date is recorded.
+   * Receives the 0-based generation index, so row "Gen 4" is `3`.
+   */
+  inferLivingAge?: (person: Person, generation: number) => boolean
   /** Rewrite the calculated relationship term, for i18n or house style. */
   formatRelationship?: (relationship: Relationship, person: Person) => string
   layout?: Partial<LayoutOptions>
@@ -50,6 +57,7 @@ export function FamilyTree({
   onFocusModeChange,
   renderCard,
   formatRelationship,
+  inferLivingAge,
   layout: layoutOptions,
   showToolbar = true,
   showGenerationRules = true,
@@ -278,6 +286,7 @@ export function FamilyTree({
                   : relationship,
               isFocused: node.personId === focusId,
               isDimmed: lineageSet !== null && !lineageSet.has(node.personId),
+              inferLivingAge: inferLivingAge?.(person, node.generation) ?? true,
             }
 
             // Selecting is a real <button> stretched over the card, rather than

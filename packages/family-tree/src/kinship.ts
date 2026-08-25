@@ -178,7 +178,7 @@ export function relationshipTo(
   if (!from || !to) return UNRELATED
 
   if (fromId === toId) {
-    return { type: "self", kind: "self", label: "you" }
+    return { type: "self", kind: "self", label: "active" }
   }
 
   const direct = bloodRelationship(graph, fromId, toId, ctx)
