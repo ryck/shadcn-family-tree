@@ -2,8 +2,18 @@ import { MoonIcon, SunIcon } from "lucide-react"
 
 import { Button } from "@workspace/ui/components/button"
 
-/** Reads the stored preference before paint so the page never flashes light. */
-export const themeScript = `(function(){try{var t=localStorage.getItem("theme");var d=t?t==="dark":matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d)}catch(e){}})()`
+/**
+ * Reads the stored preference before paint so the page never flashes light.
+ *
+ * Precedence is explicit choice, then the OS setting, then dark. The last step
+ * matters: `matchMedia` answers `false` to both queries where a browser has no
+ * preference at all, and falling through to light there would contradict the
+ * dark `theme-color` the document advertises. The `catch` lands the same way,
+ * so a blocked `localStorage` degrades to dark rather than to nothing.
+ *
+ * Kept in step with rtk-query-devtools.
+ */
+export const themeScript = `(function(){try{var t=localStorage.getItem("theme");var d;if(t){d=t==="dark"}else if(matchMedia("(prefers-color-scheme: dark)").matches){d=true}else if(matchMedia("(prefers-color-scheme: light)").matches){d=false}else{d=true}document.documentElement.classList.toggle("dark",d)}catch(e){document.documentElement.classList.add("dark")}})()`
 
 function toggleTheme() {
   const next = !document.documentElement.classList.contains("dark")

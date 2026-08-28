@@ -2,6 +2,7 @@ import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router"
 
 import appCss from "@workspace/ui/globals.css?url"
 
+import { NotFound } from "@/components/not-found"
 import { themeScript } from "@/components/theme-toggle"
 import { site } from "@/lib/site"
 
@@ -40,12 +41,7 @@ export const Route = createRootRoute({
       { rel: "manifest", href: "/manifest.json" },
     ],
   }),
-  notFoundComponent: () => (
-    <main className="mx-auto max-w-6xl p-4 pt-16">
-      <h1 className="text-2xl font-medium">404</h1>
-      <p className="text-muted-foreground">That page does not exist.</p>
-    </main>
-  ),
+  notFoundComponent: NotFound,
   shellComponent: RootDocument,
 })
 

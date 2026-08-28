@@ -6,10 +6,9 @@ import { ArrowRightIcon, CheckIcon, CopyIcon } from "lucide-react"
 import { Button } from "@workspace/ui/components/button"
 
 import { Eyebrow } from "@/components/eyebrow"
-import { GithubIcon } from "@/components/github-icon"
-import { SiteHeader } from "@/components/site-header"
+import { SiteShell } from "@/components/site-shell"
 import { hollis } from "@/data/hollis"
-import { installCommand, site } from "@/lib/site"
+import { installCommand } from "@/lib/site"
 
 export const Route = createFileRoute("/")({ component: Home })
 
@@ -34,11 +33,9 @@ const FEATURES = [
 
 function Home() {
   return (
-    <div className="flex min-h-svh flex-col">
-      <SiteHeader />
-
-      <main className="flex-1">
-        <section className="mx-auto w-full max-w-6xl px-4 pt-16 pb-10">
+    <SiteShell>
+      <main>
+        <section className="mx-auto w-full max-w-5xl px-6 pt-16 pb-10">
           <Eyebrow>shadcn registry component</Eyebrow>
 
           <h1 className="mt-4 max-w-2xl font-heading text-4xl font-medium tracking-tight text-balance sm:text-5xl">
@@ -56,9 +53,9 @@ function Home() {
             <Button
               variant="outline"
               nativeButton={false}
-              render={<Link to="/demo" />}
+              render={<Link to="/playground" />}
             >
-              Open the demo
+              Open the playground
               <ArrowRightIcon data-icon="inline-end" />
             </Button>
           </div>
@@ -66,7 +63,7 @@ function Home() {
 
         {/* The component is the hero — a static screenshot would undersell the
             part that matters, which is what happens when you click someone. */}
-        <section className="mx-auto w-full max-w-6xl px-4 pb-16">
+        <section className="mx-auto w-full max-w-5xl px-6 pb-16">
           <div className="h-[560px] overflow-hidden rounded-xl border bg-muted/30">
             <FamilyTree people={hollis} defaultFocusId="iris" />
           </div>
@@ -76,7 +73,7 @@ function Home() {
           </p>
         </section>
 
-        <section className="mx-auto grid w-full max-w-6xl gap-8 px-4 pb-24 sm:grid-cols-2">
+        <section className="mx-auto grid w-full max-w-5xl gap-8 px-6 pb-24 sm:grid-cols-2">
           {FEATURES.map((feature) => (
             <div key={feature.title} className="flex flex-col gap-1.5">
               <h2 className="font-heading font-medium text-primary">
@@ -89,30 +86,7 @@ function Home() {
           ))}
         </section>
       </main>
-
-      <footer className="border-t">
-        <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-6 text-sm text-muted-foreground">
-          <span>Built with shadcn/ui, Base UI and TanStack Start.</span>
-          <div className="flex items-center gap-4">
-            <Link
-              to="/docs"
-              className="underline-offset-4 hover:text-foreground hover:underline"
-            >
-              Documentation
-            </Link>
-            <a
-              href={site.github}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1.5 underline-offset-4 hover:text-foreground hover:underline"
-            >
-              <GithubIcon className="size-3.5" />
-              GitHub
-            </a>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </SiteShell>
   )
 }
 

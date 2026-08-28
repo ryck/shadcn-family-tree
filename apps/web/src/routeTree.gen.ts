@@ -9,89 +9,68 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as GonzalezRouteImport } from './routes/gonzalez'
-import { Route as DocsRouteImport } from './routes/docs'
-import { Route as DemoRouteImport } from './routes/demo'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DocumentationRouteImport } from './routes/documentation'
+import { Route as GonzalezRouteImport } from './routes/gonzalez'
+import { Route as PlaygroundRouteImport } from './routes/playground'
 
-const GonzalezRoute = GonzalezRouteImport.update({
-  id: '/gonzalez',
-  path: '/gonzalez',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DocsRoute = DocsRouteImport.update({
-  id: '/docs',
-  path: '/docs',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoRoute = DemoRouteImport.update({
-  id: '/demo',
-  path: '/demo',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DocumentationRoute = DocumentationRouteImport.update({
+  id: '/documentation',
+  path: '/documentation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GonzalezRoute = GonzalezRouteImport.update({
+  id: '/gonzalez',
+  path: '/gonzalez',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlaygroundRoute = PlaygroundRouteImport.update({
+  id: '/playground',
+  path: '/playground',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/demo': typeof DemoRoute
-  '/docs': typeof DocsRoute
+  '/documentation': typeof DocumentationRoute
   '/gonzalez': typeof GonzalezRoute
+  '/playground': typeof PlaygroundRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/demo': typeof DemoRoute
-  '/docs': typeof DocsRoute
+  '/documentation': typeof DocumentationRoute
   '/gonzalez': typeof GonzalezRoute
+  '/playground': typeof PlaygroundRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/demo': typeof DemoRoute
-  '/docs': typeof DocsRoute
+  '/documentation': typeof DocumentationRoute
   '/gonzalez': typeof GonzalezRoute
+  '/playground': typeof PlaygroundRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/demo' | '/docs' | '/gonzalez'
+  fullPaths: '/' | '/documentation' | '/gonzalez' | '/playground'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/demo' | '/docs' | '/gonzalez'
-  id: '__root__' | '/' | '/demo' | '/docs' | '/gonzalez'
+  to: '/' | '/documentation' | '/gonzalez' | '/playground'
+  id: '__root__' | '/' | '/documentation' | '/gonzalez' | '/playground'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DemoRoute: typeof DemoRoute
-  DocsRoute: typeof DocsRoute
+  DocumentationRoute: typeof DocumentationRoute
   GonzalezRoute: typeof GonzalezRoute
+  PlaygroundRoute: typeof PlaygroundRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/gonzalez': {
-      id: '/gonzalez'
-      path: '/gonzalez'
-      fullPath: '/gonzalez'
-      preLoaderRoute: typeof GonzalezRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/docs': {
-      id: '/docs'
-      path: '/docs'
-      fullPath: '/docs'
-      preLoaderRoute: typeof DocsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo': {
-      id: '/demo'
-      path: '/demo'
-      fullPath: '/demo'
-      preLoaderRoute: typeof DemoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -99,14 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/documentation': {
+      id: '/documentation'
+      path: '/documentation'
+      fullPath: '/documentation'
+      preLoaderRoute: typeof DocumentationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gonzalez': {
+      id: '/gonzalez'
+      path: '/gonzalez'
+      fullPath: '/gonzalez'
+      preLoaderRoute: typeof GonzalezRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/playground': {
+      id: '/playground'
+      path: '/playground'
+      fullPath: '/playground'
+      preLoaderRoute: typeof PlaygroundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DemoRoute: DemoRoute,
-  DocsRoute: DocsRoute,
+  DocumentationRoute: DocumentationRoute,
   GonzalezRoute: GonzalezRoute,
+  PlaygroundRoute: PlaygroundRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

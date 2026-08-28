@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm lint
+
+      - run: pnpm format:check
+
+      - run: pnpm typecheck
+
+      - run: pnpm test
+
+      - run: pnpm build
+
+      # `apps/web/public/r` is generated from packages/family-tree/src and
+      # committed, so the two can drift silently — the README asks for a manual
+      # rebuild and nothing enforced it. Rebuilding and diffing catches a
+      # component change that never made it into the published registry item.
+      - name: Registry is up to date
+        run: |
+          pnpm registry:build
+          git diff --exit-code apps/web/public/r \
+            || (echo "::error::apps/web/public/r is stale — run 'pnpm registry:build' and commit the result." && exit 1)

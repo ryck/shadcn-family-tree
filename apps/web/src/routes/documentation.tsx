@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router"
 
 import { Eyebrow } from "@/components/eyebrow"
-import { SiteHeader } from "@/components/site-header"
+import { SiteShell } from "@/components/site-shell"
 import { installCommand, site } from "@/lib/site"
 
-export const Route = createFileRoute("/docs")({ component: Docs })
+export const Route = createFileRoute("/documentation")({ component: Documentation })
 
 const SECTIONS = [
   { id: "installation", title: "Installation" },
@@ -15,12 +15,10 @@ const SECTIONS = [
   { id: "accessibility", title: "Accessibility" },
 ]
 
-function Docs() {
+function Documentation() {
   return (
-    <div className="flex min-h-svh flex-col">
-      <SiteHeader />
-
-      <div className="mx-auto flex w-full max-w-6xl flex-1 gap-10 px-4 py-10">
+    <SiteShell>
+      <div className="mx-auto flex w-full max-w-5xl gap-10 px-6 py-10">
         <nav className="sticky top-24 hidden h-fit w-44 shrink-0 flex-col gap-1 lg:flex">
           {SECTIONS.map((section) => (
             <a
@@ -236,7 +234,7 @@ export function Page() {
           </Section>
         </main>
       </div>
-    </div>
+    </SiteShell>
   )
 }
 

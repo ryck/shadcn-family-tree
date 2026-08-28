@@ -1,4 +1,4 @@
-import type { Person } from "@workspace/family-tree";
+import type { Person } from "@workspace/family-tree"
 
 /**
  * The González Lago family, transcribed from the working document.
@@ -735,7 +735,7 @@ export const gonzalezLago: Person[] = [
     sex: "unknown",
     parentIds: ["lorena"],
   },
-];
+]
 
 /**
  * Deducciones del sistema de dos apellidos que NO se han aplicado, porque solo
@@ -750,13 +750,13 @@ export const apellidosDeducidos = [
   "[Padre de Delia]: su primer apellido es Otero, por Delia Otero Lorenzo.",
   "Hija y bebé de Vicente: apellidos Domínguez Vizoso.",
   "Eliane y Adolfinho: en Brasil el orden se invierte (materno y luego paterno), así que la regla española no aplica.",
-];
+]
 
 /** Cosas que no cuadran y conviene confirmar antes de darlas por buenas. */
 export const dudasPorConfirmar = [
   "José Castro Castro lleva Castro por partida doble: o el padre que se fue a Argentina también era Castro, o se le inscribió repitiendo el apellido materno por no constar padre.",
   "José Castro Castro (1928) y Carmen Domínguez Pombo (1935) no tienen fecha de defunción; si han fallecido, añadirla evita que se les calcule la edad de hoy.",
-];
+]
 
 /** What the document explicitly still lists as missing. */
 export const datosPendientes = [
@@ -773,4 +773,4 @@ export const datosPendientes = [
   "Nombre de la esposa cubana de Fernando Pérez Castro.",
   "Más información de las ramas de José, Soledad y Manuel Domínguez Pombo.",
   "Fechas de nacimiento, matrimonio y fallecimiento.",
-];
+]

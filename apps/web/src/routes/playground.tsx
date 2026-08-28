@@ -10,9 +10,9 @@ import { SiteHeader } from "@/components/site-header"
 import { datasets } from "@/data"
 import type { DatasetKey } from "@/data"
 
-export const Route = createFileRoute("/demo")({ component: Demo })
+export const Route = createFileRoute("/playground")({ component: Playground })
 
-function Demo() {
+function Playground() {
   const [key, setKey] = React.useState<DatasetKey>("hollis")
   const [focusMode, setFocusMode] = React.useState<FocusMode>("highlight")
 
@@ -33,12 +33,13 @@ function Demo() {
 
   return (
     // Same centred column as the landing and docs pages, with the header kept
-    // in place so the demo is never a dead end. The tree fills whatever height
-    // is left rather than the whole viewport.
+    // in place so the demo is never a dead end. Header-only rather than the
+    // full `SiteShell`: this is a full-viewport surface where the tree takes
+    // every pixel below the toolbar, so a footer would only eat into it.
     <div className="flex h-svh flex-col">
       <SiteHeader />
 
-      <main className="mx-auto flex min-h-0 w-full max-w-6xl flex-1 flex-col gap-3 px-4 py-6">
+      <main className="mx-auto flex min-h-0 w-full max-w-5xl flex-1 flex-col gap-3 px-6 py-6">
         <div className="flex flex-wrap items-center gap-2">
           <span className="mr-2 font-mono text-xs tracking-[0.2em] text-primary uppercase">
             Dataset
