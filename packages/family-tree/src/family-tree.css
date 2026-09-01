@@ -29,6 +29,12 @@
   --ft-branch-7: oklch(0.54 0.16 295);
   --ft-branch-8: oklch(0.57 0.15 20);
   --ft-branch-none: var(--muted-foreground);
+
+  /* Sex icons read blue for male and pink for female, at the same lightness
+     and chroma as the branch hues so they sit in the same family. */
+  --ft-sex-male: oklch(0.55 0.16 255);
+  --ft-sex-female: oklch(0.6 0.16 350);
+  --ft-sex-none: var(--muted-foreground);
 }
 
 .dark [data-slot="family-tree"] {
@@ -40,6 +46,9 @@
   --ft-branch-6: oklch(0.78 0.12 95);
   --ft-branch-7: oklch(0.71 0.13 295);
   --ft-branch-8: oklch(0.73 0.13 20);
+
+  --ft-sex-male: oklch(0.72 0.13 255);
+  --ft-sex-female: oklch(0.76 0.13 350);
 }
 
 /* Resolved per card and per connector from the branch slot. */
@@ -69,6 +78,18 @@
 }
 [data-branch="none"] {
   --ft-branch: var(--ft-branch-none);
+}
+
+/* Resolved per card from the recorded sex; anything else stays neutral rather
+   than borrowing a colour that would imply one. */
+[data-slot="family-tree-card"] {
+  --ft-sex: var(--ft-sex-none);
+}
+[data-slot="family-tree-card"][data-sex="male"] {
+  --ft-sex: var(--ft-sex-male);
+}
+[data-slot="family-tree-card"][data-sex="female"] {
+  --ft-sex: var(--ft-sex-female);
 }
 
 /* The pannable surface. Cards and connectors share one transform so they

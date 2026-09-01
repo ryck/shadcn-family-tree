@@ -112,7 +112,7 @@ export function PersonCard({
       {/* Name, led by the sex icon. */}
       <div className="flex items-center gap-1.5">
         <SexIcon
-          className="size-3.5 shrink-0 text-[var(--ft-branch)]"
+          className="size-3.5 shrink-0 text-[var(--ft-sex)]"
           aria-label={SEX_LABEL[person.sex]}
         />
         <span

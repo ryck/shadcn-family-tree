@@ -1,7 +1,9 @@
-import type { Person } from "@workspace/family-tree"
+import type { Person } from "@workspace/family-tree";
 
 /**
- * The González Lago family, transcribed from the working document.
+ * The González Lago family, transcribed from the working document and the
+ * later recopilación (ramas Carrera Collazo, Iglesias del Pazo y González
+ * Vidal).
  *
  * People whose name is unknown are bracketed and described by their link
  * ("[Pareja de Ramona]") rather than given a generic placeholder, so the card
@@ -161,26 +163,114 @@ export const gonzalezLago: Person[] = [
     partnerIds: ["eliseo-gonzalez-otero"],
   },
 
+  /* ── González Vidal ancestors ───────────────────────────────────────── */
+  { id: "alfonso-gonzalez", name: "Alfonso González", sex: "male" },
+  {
+    id: "argentina-vidal",
+    name: "Argentina Vidal",
+    sex: "female",
+    partnerIds: ["alfonso-gonzalez"],
+  },
+
   /* ── González Iglesias (paternal line) ───────────────────────────────── */
   {
     id: "alfonso-gonzalez-vidal",
     name: "Alfonso González Vidal",
     sex: "male",
     location: "Vigo, Pontevedra",
+    parentIds: ["alfonso-gonzalez", "argentina-vidal"],
   },
+
+  /* ── Antonio González Vidal (Tío Toñito) ─────────────────────────────── */
+  {
+    id: "antonio-gonzalez-vidal",
+    name: "Antonio González Vidal",
+    nickname: "Tío Toñito",
+    sex: "male",
+    parentIds: ["alfonso-gonzalez", "argentina-vidal"],
+  },
+  {
+    id: "marina",
+    name: "Marina",
+    sex: "female",
+    partnerIds: ["antonio-gonzalez-vidal"],
+  },
+  {
+    id: "marinita",
+    // Los tres hermanos llevan el González de su padre; falta el apellido
+    // materno, porque el de Marina no consta.
+    name: "Marinita González",
+    sex: "female",
+    parentIds: ["antonio-gonzalez-vidal", "marina"],
+  },
+  {
+    id: "fernando-de-madrid",
+    // "Fernando de Madrid" en el documento: el "de Madrid" es de dónde es, no
+    // el apellido, que sigue pendiente.
+    name: "Fernando",
+    sex: "male",
+    location: "Madrid",
+    partnerIds: ["marinita"],
+  },
+  {
+    id: "hijo-marinita-1",
+    name: "[Hijo de Marinita]",
+    sex: "unknown",
+    parentIds: ["marinita", "fernando-de-madrid"],
+  },
+  {
+    id: "hijo-marinita-2",
+    name: "[Hijo de Marinita]",
+    sex: "unknown",
+    parentIds: ["marinita", "fernando-de-madrid"],
+  },
+  {
+    id: "pili-gonzalez",
+    name: "Pili González",
+    sex: "female",
+    parentIds: ["antonio-gonzalez-vidal", "marina"],
+  },
+  {
+    id: "marido-pili",
+    name: "[Marido de Pili]",
+    // Mote de circunstancias, usado en la conversación para identificarlo
+    // mientras no aparezca el nombre.
+    nickname: "Ochoqueiro",
+    sex: "male",
+    partnerIds: ["pili-gonzalez"],
+  },
+  {
+    id: "eva",
+    name: "Eva",
+    sex: "female",
+    parentIds: ["pili-gonzalez", "marido-pili"],
+  },
+  {
+    id: "hijo-pili",
+    name: "[Hijo de Pili]",
+    sex: "male",
+    parentIds: ["pili-gonzalez", "marido-pili"],
+  },
+  {
+    id: "toni-gonzalez",
+    name: "Toñi González",
+    sex: "female",
+    parentIds: ["antonio-gonzalez-vidal", "marina"],
+  },
+
   /* ── Iglesias del Pazo ──────────────────────────────────────────────── */
   {
-    // Sin nombre en el documento. Existe en el árbol porque es la única forma
-    // de que Mary y Fernando salgan como hermanos: el parentesco se deriva de
-    // los padres compartidos. Primer apellido Iglesias, por el de sus hijos.
-    id: "fernando-iglesias", // Fernando Iglesias del Pazo
-    name: "Fernando? Iglesias",
+    // Su nombre se dedujo del de su hijo y el documento nuevo lo confirma;
+    // falta el segundo apellido.
+    id: "fernando-iglesias",
+    name: "Fernando Iglesias",
     sex: "male",
   },
   {
-    // Igual que el anterior; su primer apellido es del Pazo.
+    // Áurea de nombre, Aurita para todos. Falta el segundo apellido.
     id: "aurita-del-pazo",
-    name: "Aurita del Pazo",
+    name: "Áurea del Pazo",
+    nickname: "Aurita",
     sex: "female",
     partnerIds: ["fernando-iglesias"],
   },
@@ -188,7 +278,15 @@ export const gonzalezLago: Person[] = [
     id: "fernando-iglesias-pazo",
     // Hermano de Mary, luego mismos dos apellidos.
     name: "Fernando Iglesias del Pazo",
+    nickname: "Fernandito",
+    birth: { date: "1949-06-25", place: "Vigo, Pontevedra" },
     sex: "male",
+    parentIds: ["fernando-iglesias", "aurita-del-pazo"],
+  },
+  {
+    id: "olga-iglesias-pazo",
+    name: "Olga Iglesias del Pazo",
+    sex: "female",
     parentIds: ["fernando-iglesias", "aurita-del-pazo"],
   },
 
@@ -197,28 +295,108 @@ export const gonzalezLago: Person[] = [
     name: "María del Carmen Iglesias del Pazo",
     nickname: "Mary",
     birth: { date: "1939-07-22", place: "Vigo, Pontevedra" },
-    death: { date: "2024-12-12", place: "Vigo, Pontevedra" },
+    death: { date: "2024-12-20", place: "Vigo, Pontevedra" },
     sex: "female",
     location: "Vigo, Pontevedra",
     parentIds: ["fernando-iglesias", "aurita-del-pazo"],
     partnerIds: ["alfonso-gonzalez-vidal"],
   },
 
+  /* ── Carrera Collazo / Lago Lago ancestors ──────────────────────────── */
+  { id: "jose-carrera", name: "José Carrera", sex: "male" },
+  {
+    id: "dorinda-collazo",
+    name: "Dorinda Collazo",
+    sex: "female",
+    partnerIds: ["jose-carrera"],
+  },
+  { id: "benito-lago", name: "Benito Lago", sex: "male" },
+  {
+    id: "carmen-lago",
+    name: "Carmen Lago",
+    sex: "female",
+    partnerIds: ["benito-lago"],
+  },
+
   /* ── Lago Carrera (maternal line) ────────────────────────────────────── */
   {
-    id: "pepe-lago", // Primer apellido deducido: su hija es María Dolores Lago Carrera.
-    name: "José Lago",
+    id: "pepe-lago",
+    // Lago Lago: hijo de Benito Lago y Carmen Lago, los dos Lago.
+    name: "José Lago Lago",
     nickname: "Pepe",
     sex: "male",
     location: "Vigo, Pontevedra",
+    parentIds: ["benito-lago", "carmen-lago"],
   },
   {
     id: "margarita",
-    // Primer apellido deducido del segundo de sus hijas (Lago Carrera).
-    name: "Margarita Carrera",
+    // Emérita de nombre, Margarita de toda la vida; el documento nuevo trae
+    // los dos, así que van juntos para que la busquen por cualquiera.
+    name: "Emérita Carrera Collazo",
+    nickname: "Margarita",
     sex: "female",
+    // birth: { date: "1949-06-25", place: "Vigo, Pontevedra" },
+    // death
     location: "Vigo, Pontevedra",
+    parentIds: ["jose-carrera", "dorinda-collazo"],
     partnerIds: ["pepe-lago"],
+  },
+
+  /* ── Emérita's siblings ─────────────────────────────────────────────── */
+  // Los apellidos no venían en el documento, pero se conocen los dos padres
+  // (José Carrera y Dorinda Collazo), así que la deducción es firme.
+  {
+    id: "obdulia-carrera-collazo",
+    name: "Obdulia Carrera Collazo",
+    sex: "female",
+    parentIds: ["jose-carrera", "dorinda-collazo"],
+  },
+  {
+    id: "manuel-casal-rodriguez",
+    name: "Manuel Casal Rodríguez",
+    sex: "male",
+    // El documento apunta el fallecimiento y la enfermedad bajo Obdulia, pero
+    // los da por suyos; ver `dudasPorConfirmar`.
+    death: { date: "2020" },
+    partnerIds: ["obdulia-carrera-collazo"],
+  },
+  {
+    id: "ines-carrera-collazo",
+    name: "Inés Carrera Collazo",
+    sex: "female",
+    parentIds: ["jose-carrera", "dorinda-collazo"],
+  },
+  {
+    id: "pepe-marido-ines",
+    name: "Pepe", // Apellidos pendientes.
+    sex: "male",
+    partnerIds: ["ines-carrera-collazo"],
+  },
+  {
+    id: "avelino-adoptado",
+    // Dictado de oído como "Abelino/Avelino"; queda por confirmar la forma.
+    name: "Avelino",
+    sex: "male",
+    meta: { adoptado: true },
+    parentIds: ["ines-carrera-collazo", "pepe-marido-ines"],
+  },
+  {
+    id: "jose-carrera-collazo",
+    name: "José Carrera Collazo",
+    sex: "male",
+    parentIds: ["jose-carrera", "dorinda-collazo"],
+  },
+  {
+    id: "julia-carrera-collazo",
+    name: "Julia Carrera Collazo",
+    sex: "female",
+    parentIds: ["jose-carrera", "dorinda-collazo"],
+  },
+  {
+    id: "manuel-carrera-collazo",
+    name: "Manuel Carrera Collazo",
+    sex: "male",
+    parentIds: ["jose-carrera", "dorinda-collazo"],
   },
 
   /* ── Children of José Castro Castro and Carmen Domínguez Pombo ───────────── */
@@ -415,10 +593,18 @@ export const gonzalezLago: Person[] = [
     name: "María del Carmen González Iglesias",
     sex: "female",
     nickname: "Maica",
+    birth: { date: "1967-10-09", place: "Vigo, Pontevedra" },
     location: "Vigo, Pontevedra",
     parentIds: ["alfonso-gonzalez-vidal", "carmen-iglesias-pazo"],
   },
-  { id: "julio", name: "Julio", sex: "male", partnerIds: ["maica"] },
+  {
+    id: "julio",
+    name: "Julio Vila García",
+    sex: "male",
+    location: "Vigo, Pontevedra",
+    birth: { date: "1961-09-11", place: "Vigo, Pontevedra" },
+    partnerIds: ["maica"],
+  },
 
   /* ── María Dolores Lago Carrera's sisters ─────────────────────────── */
   {
@@ -426,6 +612,8 @@ export const gonzalezLago: Person[] = [
     // Hermana de María Dolores Lago Carrera: mismos dos apellidos.
     name: "Josefa Lago Carrera",
     nickname: "Fita",
+    location: "Vigo, Pontevedra",
+    birth: { date: "1968-06-27", place: "Vigo, Pontevedra" },
     sex: "female",
     parentIds: ["pepe-lago", "margarita"],
   },
@@ -438,10 +626,13 @@ export const gonzalezLago: Person[] = [
   {
     id: "marita",
     // Hermana de María Dolores Lago Carrera: mismos dos apellidos.
-    name: "Marita Lago Carrera",
+    name: "Margarita Lago Carrera",
+    nickname: "Marita",
     sex: "female",
+    location: "Vigo, Pontevedra",
+    birth: { date: "1965-06-22", place: "Vigo, Pontevedra" },
     // Deceased; the document records no dates.
-    death: {},
+    death: { date: "2013-12-13", place: "Vigo, Pontevedra" },
     parentIds: ["pepe-lago", "margarita"],
   },
 
@@ -618,6 +809,7 @@ export const gonzalezLago: Person[] = [
     name: "Jorge Fernández Fernández",
     nickname: "Jito",
     location: "Vigo, Pontevedra",
+    birth: { date: "1979-04-23", place: "Vigo, Pontevedra" },
     sex: "male",
     partnerIds: ["vanesa-gonzalez-lago"],
   },
@@ -625,14 +817,16 @@ export const gonzalezLago: Person[] = [
   /* ── Children of Maica and Julio ─────────────────────────────────────────── */
   {
     id: "yago-gonzalez-iglesias",
-    name: "Yago",
+    // El documento nuevo los escribe Iago y Brai, con los dos apellidos; antes
+    // figuraban como Yago y Brais. Ver `dudasPorConfirmar`.
+    name: "Iago Vila González",
     sex: "male",
     location: "Vigo, Pontevedra",
     parentIds: ["maica", "julio"],
   },
   {
     id: "brais",
-    name: "Brais",
+    name: "Brais Vila González",
     sex: "male",
     location: "Vigo, Pontevedra",
     parentIds: ["maica", "julio"],
@@ -735,7 +929,7 @@ export const gonzalezLago: Person[] = [
     sex: "unknown",
     parentIds: ["lorena"],
   },
-]
+];
 
 /**
  * Deducciones del sistema de dos apellidos que NO se han aplicado, porque solo
@@ -744,19 +938,25 @@ export const gonzalezLago: Person[] = [
  */
 export const apellidosDeducidos = [
   "Roi: segundo apellido Paradela (hijo de Cristina Paradela Lago).",
-  "Yago y Brais: segundo apellido González (hijos de Maica, González Iglesias).",
   "Lorena: segundo apellido Lago (hija de Marita Lago Carrera).",
   "Hijo de Lorena: segundo apellido, el primero de Lorena.",
   "[Padre de Delia]: su primer apellido es Otero, por Delia Otero Lorenzo.",
   "Hija y bebé de Vicente: apellidos Domínguez Vizoso.",
+  "Eva y el hijo de Pili: primer apellido, el del marido de Pili; segundo, González.",
+  "Los dos hijos de Marinita: segundo apellido González.",
+  "Avelino, adoptado por Inés y Pepe: apellidos según cómo se inscribiera la adopción.",
   "Eliane y Adolfinho: en Brasil el orden se invierte (materno y luego paterno), así que la regla española no aplica.",
-]
+];
 
 /** Cosas que no cuadran y conviene confirmar antes de darlas por buenas. */
 export const dudasPorConfirmar = [
   "José Castro Castro lleva Castro por partida doble: o el padre que se fue a Argentina también era Castro, o se le inscribió repitiendo el apellido materno por no constar padre.",
   "José Castro Castro (1928) y Carmen Domínguez Pombo (1935) no tienen fecha de defunción; si han fallecido, añadirla evita que se les calcule la edad de hoy.",
-]
+  "El fallecimiento en 2020 y la enfermedad aparecen bajo Obdulia pero el documento los atribuye a su marido, Manuel Casal Rodríguez; están puestos en él. Confirmar de quién son.",
+  "Los hijos de Maica y Julio: el documento nuevo los escribe Iago y Brai; antes constaban como Yago y Brais. Se ha seguido el documento nuevo, que es el que trae los apellidos.",
+  "José Lago Lago figura como marido de Emérita y a la vez aparece un hermano de ella llamado José; se han dejado como dos personas distintas.",
+  "Antonio González Vidal: el documento da por hecho que lleva los mismos apellidos que su hermano Alfonso, pero pide confirmar el primero.",
+];
 
 /** What the document explicitly still lists as missing. */
 export const datosPendientes = [
@@ -771,6 +971,16 @@ export const datosPendientes = [
   "Dos hijos desconocidos de Adolfo Domínguez Pombo.",
   "Nombre de la hija de Vicente Domínguez González y Elvira Vizoso.",
   "Nombre de la esposa cubana de Fernando Pérez Castro.",
+  "Apellidos de Pepe, marido de Inés Carrera Collazo.",
+  "Confirmar si el hijo adoptado de Inés y Pepe es Avelino o Abelino.",
+  "Enfermedad de Manuel Casal Rodríguez, si se quiere registrar.",
+  "Apellido de Fernando, el marido madrileño de Marinita.",
+  "Nombres de los dos hijos de Marinita y Fernando.",
+  'Nombre del marido de Pili, al que en la conversación se llamó "Ochoqueiro".',
+  "Nombre del hijo de Pili, el hermano de Eva.",
+  "Datos de Toñi González, la tercera hija de Antonio y Marina.",
+  "Segundos apellidos de Fernando Iglesias y de Áurea del Pazo.",
+  "Carmucha, prima de Alfonso González Vidal: no está en el árbol porque falta saber de qué hermano de Alfonso González o de Argentina Vidal desciende.",
   "Más información de las ramas de José, Soledad y Manuel Domínguez Pombo.",
   "Fechas de nacimiento, matrimonio y fallecimiento.",
-]
+];
