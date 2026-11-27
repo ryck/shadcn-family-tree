@@ -1,17 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64" role="img" aria-label="shadcn-family-tree">
   <style>
     .fg { stroke: #1f2430; }
+    .accent { fill: #a65f00; }
     .fg-fill { fill: #1f2430; }
     @media (prefers-color-scheme: dark) {
       .fg { stroke: #e6e1cf; }
       .fg-fill { fill: #e6e1cf; }
+      .accent { fill: #d08700; }
     }
   </style>
   <g class="fg" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
     <path d="M12 7v3"/>
     <path d="M5 14.5v-2.5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2.5"/>
   </g>
-  <circle cx="12" cy="4.25" r="2.6" fill="#e6b450"/>
+  <circle cx="12" cy="4.25" r="2.6" class="accent"/>
   <circle class="fg-fill" cx="5" cy="17.25" r="2.6"/>
   <circle class="fg-fill" cx="19" cy="17.25" r="2.6"/>
 </svg>
