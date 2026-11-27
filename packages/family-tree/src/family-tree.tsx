@@ -248,7 +248,9 @@ export function FamilyTree({
                     }}
                   />
                   <span
-                    className="absolute -translate-x-full pr-3 text-[11px] text-muted-foreground/70 tabular-nums"
+                    // Full muted, not /70: at 11px that was 4.17:1, under
+                    // WCAG AA's 4.5:1 (axe)
+                    className="absolute -translate-x-full pr-3 text-[11px] text-muted-foreground tabular-nums"
                     style={{ top: row.y, left: 0 }}
                   >
                     {`Gen ${row.generation + 1}`}

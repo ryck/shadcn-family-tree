@@ -159,7 +159,10 @@ export function PersonCard({
             data-ft-interactive=""
             className={cn(
               "group/place relative z-10 text-muted-foreground hover:text-foreground",
-              "flex min-w-0 shrink items-center gap-0.5 text-[10px]"
+              "flex min-w-0 shrink items-center gap-0.5 text-[10px]",
+              // A 24px+ tap target (WCAG 2.5.8, axe target-size) without
+              // moving anything: the padding is taken back by the margin
+              "-my-[7px] py-[7px]"
             )}
             title={`Find ${place} on Google Maps`}
           >
