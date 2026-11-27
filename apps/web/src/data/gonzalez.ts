@@ -1,4 +1,4 @@
-import type { Person } from "@workspace/family-tree";
+import type { Person } from "@workspace/family-tree"
 
 /**
  * The González Lago family, transcribed from the working document and the
@@ -929,7 +929,7 @@ export const gonzalezLago: Person[] = [
     sex: "unknown",
     parentIds: ["lorena"],
   },
-];
+]
 
 /**
  * Deducciones del sistema de dos apellidos que NO se han aplicado, porque solo
@@ -946,7 +946,7 @@ export const apellidosDeducidos = [
   "Los dos hijos de Marinita: segundo apellido González.",
   "Avelino, adoptado por Inés y Pepe: apellidos según cómo se inscribiera la adopción.",
   "Eliane y Adolfinho: en Brasil el orden se invierte (materno y luego paterno), así que la regla española no aplica.",
-];
+]
 
 /** Cosas que no cuadran y conviene confirmar antes de darlas por buenas. */
 export const dudasPorConfirmar = [
@@ -956,7 +956,7 @@ export const dudasPorConfirmar = [
   "Los hijos de Maica y Julio: el documento nuevo los escribe Iago y Brai; antes constaban como Yago y Brais. Se ha seguido el documento nuevo, que es el que trae los apellidos.",
   "José Lago Lago figura como marido de Emérita y a la vez aparece un hermano de ella llamado José; se han dejado como dos personas distintas.",
   "Antonio González Vidal: el documento da por hecho que lleva los mismos apellidos que su hermano Alfonso, pero pide confirmar el primero.",
-];
+]
 
 /** What the document explicitly still lists as missing. */
 export const datosPendientes = [
@@ -983,4 +983,4 @@ export const datosPendientes = [
   "Carmucha, prima de Alfonso González Vidal: no está en el árbol porque falta saber de qué hermano de Alfonso González o de Argentina Vidal desciende.",
   "Más información de las ramas de José, Soledad y Manuel Domínguez Pombo.",
   "Fechas de nacimiento, matrimonio y fallecimiento.",
-];
+]

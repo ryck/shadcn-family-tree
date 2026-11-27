@@ -4,7 +4,9 @@ import { Eyebrow } from "@/components/eyebrow"
 import { SiteShell } from "@/components/site-shell"
 import { installCommand, site } from "@/lib/site"
 
-export const Route = createFileRoute("/documentation")({ component: Documentation })
+export const Route = createFileRoute("/documentation")({
+  component: Documentation,
+})
 
 const SECTIONS = [
   { id: "installation", title: "Installation" },
