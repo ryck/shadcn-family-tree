@@ -2,7 +2,8 @@ import type { SVGProps } from "react"
 
 /**
  * The project mark: one node, a drop, a sibling bus, two children — the same
- * shape the component draws. Kept in sync with `public/favicon.svg`.
+ * shape the component draws. Kept in sync with `public/favicon.svg` and
+ * `public/logo.svg`.
  */
 export function MarkIcon(props: SVGProps<SVGSVGElement>) {
   return (
