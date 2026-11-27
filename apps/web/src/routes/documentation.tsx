@@ -21,7 +21,11 @@ function Documentation() {
   return (
     <SiteShell>
       <div className="mx-auto flex w-full max-w-5xl gap-10 px-6 py-10">
-        <nav className="sticky top-24 hidden h-fit w-44 shrink-0 flex-col gap-1 lg:flex">
+        {/* Labelled apart from the header's nav (axe: landmark-unique) */}
+        <nav
+          aria-label="Sections"
+          className="sticky top-24 hidden h-fit w-44 shrink-0 flex-col gap-1 lg:flex"
+        >
           {SECTIONS.map((section) => (
             <a
               key={section.id}
@@ -277,7 +281,13 @@ function Cd({ children }: { children: React.ReactNode }) {
 
 function Code({ children }: { children: string }) {
   return (
-    <pre className="overflow-x-auto rounded-lg border bg-muted/50 p-4 text-sm">
+    <pre
+      // Focusable, so keyboard users can scroll code that overflows (axe:
+      // scrollable-region-focusable)
+      // oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- a scrollable region needs focus to be scrolled by keyboard
+      tabIndex={0}
+      className="overflow-x-auto rounded-lg border bg-muted/50 p-4 text-sm focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+    >
       <code className="font-mono">{children}</code>
     </pre>
   )
@@ -301,7 +311,13 @@ function Table({
   rows: string[][]
 }) {
   return (
-    <div className="overflow-x-auto rounded-lg border">
+    <div
+      // Focusable, so keyboard users can scroll a table that overflows on a
+      // phone (axe: scrollable-region-focusable)
+      // oxlint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- a scrollable region needs focus to be scrolled by keyboard
+      tabIndex={0}
+      className="overflow-x-auto rounded-lg border focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+    >
       <table className="w-full text-sm">
         <thead className="bg-muted/50">
           <tr>

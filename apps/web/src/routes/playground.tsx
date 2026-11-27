@@ -40,6 +40,9 @@ function Playground() {
       <SiteHeader />
 
       <main className="mx-auto flex min-h-0 w-full max-w-5xl flex-1 flex-col gap-3 px-6 py-6">
+        {/* The page's heading for screen readers (axe: page-has-heading-one);
+            visually the tree is the title */}
+        <h1 className="sr-only">Family tree playground</h1>
         <div className="flex flex-wrap items-center gap-2">
           <span className="mr-2 font-mono text-xs tracking-[0.2em] text-primary uppercase">
             Dataset
