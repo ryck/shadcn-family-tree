@@ -6,6 +6,7 @@ import { ArrowRightIcon, CheckIcon, CopyIcon } from "lucide-react"
 import { Button } from "@workspace/ui/components/button"
 
 import { Eyebrow } from "@/components/eyebrow"
+import { MarkIcon } from "@/components/mark-icon"
 import { SiteShell } from "@/components/site-shell"
 import { hollis } from "@/data/hollis"
 import { installCommand } from "@/lib/site"
@@ -38,10 +39,14 @@ function Home() {
         <section className="mx-auto w-full max-w-5xl px-6 pt-16 pb-10">
           <Eyebrow>shadcn registry component</Eyebrow>
 
-          <h1 className="mt-4 max-w-2xl font-heading text-4xl font-medium tracking-tight text-balance sm:text-5xl">
-            Family trees that know{" "}
-            <span className="text-primary">who everyone is to you.</span>
-          </h1>
+          <div className="mt-4 flex items-center justify-between gap-6">
+            <h1 className="max-w-2xl font-heading text-4xl font-medium tracking-tight text-balance sm:text-5xl">
+              Family trees that know{" "}
+              <span className="text-primary">who everyone is to you.</span>
+            </h1>
+            {/* Decorative: the wordmark in the header already names the site */}
+            <MarkIcon className="size-16 shrink-0 text-foreground sm:size-28" />
+          </div>
 
           <p className="mt-4 max-w-xl text-lg text-pretty text-muted-foreground">
             A vertical, generation-layered tree built from shadcn cards. Pick a
