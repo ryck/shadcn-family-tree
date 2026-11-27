@@ -33,7 +33,7 @@ function Gonzalez() {
   return (
     <div className="flex h-svh flex-col">
       <header className="flex h-12 shrink-0 items-center gap-3 border-b px-4">
-        <MarkIcon className="size-4 shrink-0 text-primary" />
+        <MarkIcon className="size-4 shrink-0" />
         <span className="font-mono text-xs tracking-[0.2em] text-primary uppercase">
           González Lago
         </span>
