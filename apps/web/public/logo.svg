@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="64" height="64" role="img" aria-label="shadcn-family-tree">
   <style>
-    .fg { stroke: #1f2430; }
+    .fg { stroke: #0a0a0a; }
     .accent { fill: #a65f00; }
-    .fg-fill { fill: #1f2430; }
+    .fg-fill { fill: #0a0a0a; }
     @media (prefers-color-scheme: dark) {
-      .fg { stroke: #e6e1cf; }
-      .fg-fill { fill: #e6e1cf; }
+      .fg { stroke: #fafafa; }
+      .fg-fill { fill: #fafafa; }
       .accent { fill: #d08700; }
     }
   </style>
