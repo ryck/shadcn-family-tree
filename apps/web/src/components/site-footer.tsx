@@ -6,9 +6,7 @@ import { textLink } from "@/lib/link"
  * Outbound only. The header already carries the internal routes, and repeating
  * them here would just be a second nav.
  */
-const LINKS = [
-  { href: "https://ui.shadcn.com", label: "shadcn/ui" },
-]
+const LINKS = [{ href: "https://ui.shadcn.com", label: "shadcn/ui" }]
 
 export function SiteFooter() {
   return (

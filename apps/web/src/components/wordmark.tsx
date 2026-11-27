@@ -8,7 +8,7 @@ import { site } from "@/lib/site"
 export function Wordmark({ className }: { className?: string }) {
   return (
     <span className={className}>
-      <MarkIcon className="mr-2 inline size-4 align-[-2px] text-primary" />
+      <MarkIcon className="mr-2 inline size-4 align-[-2px]" />
       <span className="font-mono">{site.nameLead}</span>
       <span className="font-mono text-primary">{site.nameAccent}</span>
     </span>

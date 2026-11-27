@@ -18,8 +18,9 @@ export function MarkIcon(props: SVGProps<SVGSVGElement>) {
         <path d="M12 7v3" />
         <path d="M5 14.5v-2.5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v2.5" />
       </g>
+      {/* The root node carries the accent, as in public/logo.svg. */}
+      <circle cx="12" cy="4.25" r="2.6" fill="var(--primary)" />
       <g fill="currentColor">
-        <circle cx="12" cy="4.25" r="2.6" />
         <circle cx="5" cy="17.25" r="2.6" />
         <circle cx="19" cy="17.25" r="2.6" />
       </g>
